@@ -1,0 +1,23 @@
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 600px;
+}
+.form-row {
+  display: grid;
+  gap: .5rem;
+}
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Força o p-selectButton a ocupar 100% da largura */
+:host ::ng-deep .p-selectbutton {
+  width: 100%;
+}
+:host ::ng-deep .p-selectbutton .p-button {
+  flex-grow: 1;
+}

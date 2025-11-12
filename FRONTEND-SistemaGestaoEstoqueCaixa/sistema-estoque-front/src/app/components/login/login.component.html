@@ -1,0 +1,39 @@
+<p-toast></p-toast>
+
+<div class="login-container">
+  <p-card header="Login - Sistema de Gestão" [style]="{ width: '360px' }">
+    <div class="form-grid">
+      
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input 
+          pInputText 
+          id="email" 
+          [(ngModel)]="credentials.email" 
+          placeholder="admin@email.com"
+          (keyup.enter)="login()" />
+      </div>
+
+      <div class="form-row">
+        <label for="senha">Senha</label>
+        <p-password 
+          id="senha" 
+          [(ngModel)]="credentials.senha" 
+          [feedback]="false"
+          [toggleMask]="true"
+          placeholder="Sua senha"
+          (keyup.enter)="login()">
+        </p-password>
+      </div>
+
+      <button 
+        pButton 
+        label="Entrar" 
+        icon="pi pi-sign-in" 
+        [loading]="carregando" 
+        (click)="login()">
+      </button>
+
+    </div>
+  </p-card>
+</div>

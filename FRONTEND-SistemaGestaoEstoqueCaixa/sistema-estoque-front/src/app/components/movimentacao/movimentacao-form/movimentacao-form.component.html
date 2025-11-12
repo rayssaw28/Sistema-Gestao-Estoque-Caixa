@@ -1,0 +1,56 @@
+<p-toast></p-toast>
+
+<h2>Registrar Movimentação de Estoque</h2>
+
+<div class="form-grid">
+
+  <div class="form-row">
+    <label for="produto">Produto</label>
+    <p-dropdown
+      id="produto"
+      [options]="produtos"
+      [(ngModel)]="movimentacao.produtoId"
+      optionLabel="nome"
+      optionValue="id"
+      placeholder="Selecione um produto"
+      [filter]="true"
+      filterBy="nome"
+      [showClear]="true">
+    </p-dropdown>
+  </div>
+
+  <div class="form-row">
+    <label for="tipo">Tipo de Movimentação</label>
+    <p-selectButton
+      id="tipo"
+      [options]="opcoesTipo"
+      [(ngModel)]="movimentacao.tipo"
+      optionLabel="label"
+      optionValue="value">
+    </p-selectButton>
+  </div>
+
+  <div class="form-row">
+    <label for="quantidade">Quantidade</label>
+    <p-inputNumber id="quantidade" [(ngModel)]="movimentacao.quantidade" [min]="1"></p-inputNumber>
+  </div>
+
+  <div class="form-row">
+    <label for="motivo">Motivo</label>
+    <textarea
+      pInputTextarea
+      id="motivo"
+      [(ngModel)]="movimentacao.motivo"
+      placeholder="Ex: Compra de fornecedor, Ajuste de inventário, etc."
+      [rows]="3"
+      [autoResize]="true">
+    </textarea>
+  </div>
+
+  <div class="actions">
+    <button pButton label="Registrar" (click)="salvar()" [disabled]="carregando"></button>
+    <a routerLink="/movimentacoes">
+      <button pButton label="Voltar" class="p-button-text"></button>
+    </a>
+  </div>
+</div>

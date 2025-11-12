@@ -1,0 +1,7 @@
+@import "primeng/resources/themes/saga-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+
+.container {
+  padding: 1.5rem;
+}

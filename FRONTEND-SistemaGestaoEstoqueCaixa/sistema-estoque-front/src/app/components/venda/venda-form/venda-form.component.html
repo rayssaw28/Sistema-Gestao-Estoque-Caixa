@@ -1,0 +1,99 @@
+<p-toast></p-toast>
+
+<div class="pdv-grid">
+
+  <div class="pdv-coluna-itens">
+    <div class="form-grid">
+      
+      <div class="form-row-duplo">
+        <div class="form-row" style="flex-grow: 3;">
+          <label for="produto">Produto</label>
+          <p-dropdown
+            id="produto"
+            [options]="produtos"
+            [(ngModel)]="produtoSelecionadoId"
+            placeholder="Selecione um produto (Estoque: {{ getEstoqueProdutoSelecionado() }})"
+            optionLabel="nome"
+            optionValue="id"
+            [filter]="true"
+            filterBy="nome"
+            [showClear]="true">
+          </p-dropdown>
+        </div>
+        
+        <div class="form-row">
+          <label for="quantidade">Qtd.</label>
+          <p-inputNumber id="quantidade" [(ngModel)]="quantidadeSelecionada" [min]="1"></p-inputNumber>
+        </div>
+      </div>
+
+      <button pButton label="Adicionar Item ao Carrinho" icon="pi pi-plus" (click)="adicionarItem()" [disabled]="carregando"></button>
+
+    </div>
+    
+    <div class="card-carrinho">
+      <h4>Carrinho</h4>
+      <p-table [value]="carrinho">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Produto</th>
+            <th>Qtd.</th>
+            <th>Preço Unit.</th>
+            <th>Subtotal</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.quantidade }}</td>
+            <td>{{ item.precoUnitario | currency:'BRL' }}</td>
+            <td>{{ item.subtotal | currency:'BRL' }}</td>
+            <td>
+              <button pButton icon="pi pi-trash" class="p-button-danger p-button-text" (click)="removerItem(item.produtoId)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="5">Carrinho vazio.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <div class="pdv-coluna-pagamento">
+    <div class="card-pagamento">
+      <h3>Pagamento</h3>
+      
+      <div class="total-display">
+        <span>TOTAL</span>
+        <h2>{{ valorTotal | currency:'BRL':'symbol':'1.2-2' }}</h2>
+      </div>
+
+      <div class="form-row">
+        <label for="valorRecebido">Valor Recebido</label>
+        <p-inputNumber id="valorRecebido" [(ngModel)]="valorRecebido" mode="currency" currency="BRL" locale="pt-BR" [min]="0" (onInput)="recalcularTroco()"></p-inputNumber>
+      </div>
+
+      <div class="total-display troco">
+        <span>TROCO</span>
+        <h2 [class.positivo]="troco > 0">{{ troco | currency:'BRL':'symbol':'1.2-2' }}</h2>
+      </div>
+
+      <button 
+        pButton 
+        label="Finalizar Venda" 
+        class="p-button-success p-button-lg" 
+        icon="pi pi-check"
+        [disabled]="carregando || carrinho.length === 0 || valorRecebido < valorTotal"
+        (click)="finalizarVenda()">
+      </button>
+      <a routerLink="/vendas" style="text-align: center; margin-top: 1rem; display: block;">
+        Ver Histórico de Vendas
+      </a>
+    </div>
+  </div>
+
+</div>

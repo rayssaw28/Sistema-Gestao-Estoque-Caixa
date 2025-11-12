@@ -1,0 +1,41 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="toolbar">
+  <h2>Histórico de Movimentações</h2>
+  <button pButton label="Nova Movimentação" class="p-button-success" routerLink="/movimentacoes/novo"></button>
+</div>
+
+<p-table [value]="movimentacoes" [paginator]="true" [rows]="10" [loading]="carregando">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="dataHora">Data/Hora <p-sortIcon field="dataHora"></p-sortIcon></th>
+      <th pSortableColumn="produtoNome">Produto <p-sortIcon field="produtoNome"></p-sortIcon></th>
+      <th pSortableColumn="tipo">Tipo <p-sortIcon field="tipo"></p-sortIcon></th>
+      <th pSortableColumn="quantidade">Qtd. <p-sortIcon field="quantidade"></p-sortIcon></th>
+      <th pSortableColumn="usuarioNome">Usuário <p-sortIcon field="usuarioNome"></p-sortIcon></th>
+      <th>Motivo</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-m>
+    <tr>
+      <td>{{ m.dataHora | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+      <td>{{ m.produtoNome }}</td>
+      <td>
+        <p-tag [severity]="getSeverity(m.tipo)" [value]="m.tipo"></p-tag>
+      </td>
+      <td>{{ m.quantidade }}</td>
+      <td>{{ m.usuarioNome }}</td>
+      <td>{{ m.motivo }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="6">Nenhuma movimentação encontrada.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<div class="summary">
+  Total: {{ movimentacoes.length }}
+</div>

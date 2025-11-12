@@ -1,0 +1,40 @@
+<p-toast></p-toast>
+
+<h2>{{ isEdicao ? 'Editar Produto' : 'Novo Produto' }}</h2>
+
+<div class="form-grid">
+
+  <div class="form-row">
+    <label for="codigo">Código</label>
+    <input pInputText id="codigo" [(ngModel)]="produto.codigo" placeholder="Ex: SKU-001" [readonly]="isEdicao" />
+    </div>
+
+  <div class="form-row">
+    <label for="nome">Nome</label>
+    <input pInputText id="nome" [(ngModel)]="produto.nome" placeholder="Nome do Produto" />
+  </div>
+
+  <div class="form-row">
+    <label for="categoria">Categoria</label>
+    <input pInputText id="categoria" [(ngModel)]="produto.categoria" placeholder="Ex.: Limpeza" />
+  </div>
+
+  <div class="form-row">
+    <label for="preco">Preço Unitário</label>
+    <p-inputNumber id="preco" mode="currency" currency="BRL" locale="pt-BR"
+                   [(ngModel)]="produto.precoUnitario"></p-inputNumber>
+  </div>
+
+  <div class="form-row">
+    <label for="estoque">Estoque Inicial</label>
+    <p-inputNumber id="estoque" [(ngModel)]="produto.quantidadeEstoque" [readonly]="isEdicao"></p-inputNumber>
+    </div>
+
+  <div class="actions">
+    <button pButton label="Salvar" (click)="salvar()" [disabled]="carregando"></button>
+    <button pButton label="Limpar" class="p-button-secondary" (click)="limpar()" [disabled]="carregando"></button>
+    <a routerLink="/produtos">
+      <button pButton label="Voltar" class="p-button-text"></button>
+    </a>
+  </div>
+</div>
