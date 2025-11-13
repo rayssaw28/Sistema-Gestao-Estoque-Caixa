@@ -27,7 +27,8 @@ public final class MovimentacaoEstoqueMapper {
                 m.getTipo() != null ? m.getTipo().name() : null,
                 m.getQuantidade(),
                 m.getDataHora(),
-                m.getUsuario() != null ? m.getUsuario().getNomeCompleto() : null
+                m.getUsuario() != null ? m.getUsuario().getNomeCompleto() : null,
+                m.getMotivo()
         );
     }
 }
