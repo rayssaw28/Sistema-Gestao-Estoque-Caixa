@@ -8,5 +8,6 @@ public record MovimentacaoEstoqueResponse(
         String tipo,
         Integer quantidade,
         LocalDateTime dataHora,
-        String usuarioNome
+        String usuarioNome,
+        String motivo
 ) {}
