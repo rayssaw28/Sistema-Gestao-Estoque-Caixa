@@ -6,7 +6,7 @@ Este projeto é um sistema web completo para controle de estoque, registro de ve
 
 Desenvolver um sistema web para controle de estoque, registro de vendas (caixa) e gestão de usuários, com base em uma arquitetura cliente-servidor moderna, aplicando os conceitos de formulários reativos, validações, rotas protegidas, serviços REST e papéis de usuário (roles).
 
-## uncionalidades Principais
+## Funcionalidades Principais
 
 O sistema é dividido em módulos com permissões baseadas em dois perfis de usuário: **ADMIN** e **OPERADOR**.
 
