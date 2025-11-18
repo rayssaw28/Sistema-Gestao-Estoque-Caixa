@@ -1,0 +1,5 @@
+export enum TipoMovimentacao {
+  ENTRADA = 'ENTRADA',
+  AJUSTE_POSITIVO = 'AJUSTE_POSITIVO',
+  AJUSTE_NEGATIVO = 'AJUSTE_NEGATIVO'
+}
