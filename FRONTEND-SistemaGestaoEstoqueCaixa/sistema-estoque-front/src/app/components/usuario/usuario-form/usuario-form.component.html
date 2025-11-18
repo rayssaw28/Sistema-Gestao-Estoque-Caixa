@@ -1,0 +1,58 @@
+<p-toast></p-toast>
+
+<h2>{{ isEdicao ? 'Editar Usuário' : 'Novo Usuário' }}</h2>
+
+<div class="form-grid">
+
+  <div class="form-row">
+    <label for="nome">Nome Completo</label>
+    <input pInputText id="nome" [(ngModel)]="usuario.nomeCompleto" placeholder="Nome Sobrenome" />
+  </div>
+
+  <div class="form-row">
+    <label for="email">E-mail</label>
+    <input pInputText id="email" [(ngModel)]="usuario.email" placeholder="email@dominio.com" />
+  </div>
+
+  <div class="form-row">
+    <label for="senha">Senha</label>
+    <p-password
+      id="senha"
+      [(ngModel)]="usuario.senha"
+      [feedback]="false"
+      [placeholder]="isEdicao ? '(Deixe em branco para não alterar)' : 'Mínimo 8 caracteres, 1 maiúscula, 1 número'"
+      [toggleMask]="true">
+    </p-password>
+  </div>
+
+  <div class="form-row-duplo">
+    <div class="form-row">
+      <label for="perfil">Perfil</label>
+      <p-dropdown
+        id="perfil"
+        [options]="opcoesPerfil"
+        [(ngModel)]="usuario.perfil"
+        optionLabel="label"
+        optionValue="value"></p-dropdown>
+    </div>
+
+    <div class="form-row">
+      <label for="ativo">Status</label>
+      <p-toggleButton
+        id="ativo"
+        [(ngModel)]="usuario.ativo"
+        onLabel="Ativo"
+        offLabel="Inativo"
+        onIcon="pi pi-check"
+        offIcon="pi pi-times"></p-toggleButton>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <button pButton label="Salvar" (click)="salvar()" [disabled]="carregando"></button>
+    <a routerLink="/usuarios">
+      <button pButton label="Voltar" class="p-button-text"></button>
+    </a>
+  </div>
+</div>

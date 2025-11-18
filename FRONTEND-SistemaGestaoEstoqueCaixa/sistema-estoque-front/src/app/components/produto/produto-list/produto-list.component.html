@@ -1,0 +1,43 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="toolbar">
+  <button pButton label="Novo Produto" class="p-button-success" (click)="novo()"></button>
+</div>
+
+<p-table [value]="produtos" [paginator]="true" [rows]="10" [loading]="carregando">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Código</th>
+      <th>Nome</th>
+      <th>Categoria</th>
+      <th>Estoque</th>
+      <th>Preço Unit.</th>
+      <th style="width: 220px;">Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-p>
+    <tr>
+      <td>{{ p.codigo }}</td>
+      <td>{{ p.nome }}</td>
+      <td>{{ p.categoria }}</td>
+      <td>
+        <p-tag [severity]="p.quantidadeEstoque > 0 ? 'success' : 'danger'" [value]="p.quantidadeEstoque"></p-tag>
+      </td>
+      <td>{{ p.precoUnitario | currency:'BRL':'symbol':'1.2-2' }}</td>
+      <td>
+        <button pButton label="Editar" (click)="editar(p.id)"></button>
+        <button pButton label="Excluir" class="p-button-danger" (click)="confirmarExclusao(p)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="6">Nenhum produto encontrado.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<div class="summary">
+  Total: {{ produtos.length }}
+</div>
