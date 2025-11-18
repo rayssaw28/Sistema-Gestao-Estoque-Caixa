@@ -40,7 +40,7 @@ O projeto é dividido em duas partes principais:
 * **Angular Router:** Para gerenciamento de rotas.
 * **HTTP Interceptor:** Para anexar automaticamente o token de autenticação nas requisições à API.
 
-## 🚀 Como Executar
+##  Como Executar
 
 ### Pré-requisitos
 
@@ -73,6 +73,26 @@ O projeto é dividido em duas partes principais:
     npm start
     ```
 4.  A aplicação estará disponível em `http://localhost:4200`.
+
+## Entrar na aplicação
+
+1. Acesse `http://localhost:8080/h2-console`
+   
+2. Preencha os dados com base no: `application.properties:`
+Driver Class: `org.h2.Driver`
+JDBC URL: `jdbc:h2:file:./data/db-api`
+User Name: `sa`
+Password: `(deixe em branco)`
+
+3.Adicione o usuario ADMIN
+`INSERT INTO usuarios (id, nome_completo, email, senha, perfil, ativo)
+VALUES (1, 'Admin', 'admin@email.com', 'admin123', 'ADMIN', true);`
+
+4. Volte na tela de login e coloque as credenciais!
+
+4.1 **CASO JÁ EXISTA UM USUARIO COLOQUE ISSO NO H2** 
+ `UPDATE usuarios SET senha = 'admin123', perfil = 'ADMIN', ativo = true WHERE id = 1;`
+    e coloque novamnete as credenciais no sistema
 
 ## 👨‍💻 Desenvolvedores
 
