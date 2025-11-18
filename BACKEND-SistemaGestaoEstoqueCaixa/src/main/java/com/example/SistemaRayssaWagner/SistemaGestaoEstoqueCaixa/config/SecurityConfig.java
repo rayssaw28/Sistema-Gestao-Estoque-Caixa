@@ -58,12 +58,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        // Adicione esta linha para permitir que o H2 Console seja exibido em frames
+        http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));
+
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic(basic -> {})
                 .authorizeHttpRequests(auth -> auth
+                        // Adicione esta linha para permitir acesso ao H2 Console
+                        .requestMatchers("/h2-console/**").permitAll()
+
                         .requestMatchers("/api/usuarios/**").hasAuthority("ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/api/produtos").hasAnyAuthority("ADMIN", "OPERADOR")
